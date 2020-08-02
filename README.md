@@ -38,7 +38,7 @@ All files are located in the main directory and src folder.
 
  # Preview of Results
 
-![](./report/figure/map_5.png)
+![](./report/figures/map_5.png)
 
  Above you can see the five zip codes we believe to be the best investment opportunities within the Chicago Metropolitan area. The remainder of this document will run through the steps we took to come to these conclusions.
  
@@ -67,13 +67,13 @@ We began by creating a baseline model for a single zip code. We took into accoun
 
 Once our basline model's were created, we began to create more complex models in order to obtain the most accurate forecasts possible. During our exploration of the data, we found a subtle seasonality in the time series. There was a recurring pattern every twelve months. Although, it was a small cycle, it still had an effect on the models, so we decided to use a SARIMA model to take this seasonality into account. You can see from the plot below that pattern repeated on a twelve month time frame. The values in the original plot and the trend plot are much larger than those in the seasonlity plot, indicating the seasonality did not impact the time series very much. Nonetheless, it was present and in order to produce trustworthy prediction, we took them into account.
 
-![](.report/figures/seasonality_plot.png)
+![](./report/figures/seasonality_plot.png)
 
 We performed a manual grid search on the model for each of the zip codes, while holding the seasonality parameter constant at 12. We varied the parameters p, d, and q with values ranging from 0 to 2. Once we obtained the parameters that produced the best model for a given zip code, we stored them in a list to be used later. These model's were fit on the training data for each respective zip code. To judge the accuracy of these model's, we obtained the RMSE of the test predictions for each zip code. There were 27 in all, and 18 produced a testing RMSE of under 2,500. These were the model's we considered to produce trustworthy predictions, and therefore were the model's we decided to proceed with.
 
 After we had the 18 zip codes that we believed could produce an accurate forecast, we retrained and retuned each model on the entire dataset (January 2013 - April 2018). We were then able to forecast for twelve months into the future, to obtain a potential ROI for each zip code. We did this by forecasting the value of each zip code for twelve months into the future (forecast of twelve steps). Once we had the values for each step in the forecast, we could use the final value (step 12) to compute the twelve month ROI similar to what we did earlier with historical ROI. We used the final value of the dataset (April 2018) and final value of forecast (March 2019) to compute ROI with the same formula as before ((future value - past value) / past value) * 100.
 
-![](./report/figures/forecast.png)
+![](./report/figures/forecasts.png)
 
 The plot above show's the five zip codes that will produce the highest ROI based on their respective forecasts. The dotted lines in the plot represent the actual values, the thin lines over the dotted shows how the model fit to the data, and the thick lines at the end are the model's forecasts. You can see from the plot above each of the five model's was able to fit to the data extremely well. This made us confident in each of these model's predictions.
 
